@@ -1,0 +1,88 @@
+    import java.util.ArrayList;
+    import java.util.Scanner;
+    public class CRUD_Operation {
+    
+    public static ArrayList<String> Tasks = new ArrayList<>();
+    
+    public static void create_task(String task){
+       Tasks.add(task);
+       System.out.println("Task Created Successfully");
+    }
+    
+    public static void view_task(){
+       if(Tasks.isEmpty()){
+           System.out.println("No Task Available");
+       }
+       else{
+           System.out.println("List of Task :");
+           for(int i = 0; i < Tasks.size();i++){
+               System.out.println((i+1)+". "+Tasks.get(i));
+           }
+       }
+               
+    }
+    
+    public static void update_task(int index, String new_task){
+       if(index >=0 && index < Tasks.size()){
+           Tasks.set(index,new_task);
+           System.out.println("Task Updated Successfully");
+       } 
+       else{
+           System.out.println("Invalid Index");
+       }
+    }
+    
+    public static void delete_task(int index){
+      if(index >=0 && index < Tasks.size()){
+           Tasks.remove(index);
+           System.out.println("Task Deleted Successfully");
+       } 
+       else{
+           System.out.println("Invalid Index");
+       }  
+    }
+    
+    public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int choice;
+    do{
+    System.out.println("Choose one option :\n1.Create Task\n2.View Task\n3.Upadate Task\n4.Delete Task\n5.Exit");
+    choice = sc.nextInt();
+    sc.nextLine();
+    
+    switch(choice){
+        case 1:
+            System.out.print("Enter task : ");
+            String task = sc.nextLine();
+            create_task(task);
+            break;
+        case 2:
+            view_task();
+            break;
+        case 3:
+            System.out.print("Enter Task Number to Update : ");
+            int update = sc.nextInt() - 1;
+            sc.nextLine();
+            System.out.print("Enter Updated Task : ");
+            String updatedtask = sc.nextLine();
+            update_task(update,updatedtask);
+            break;
+        case 4:
+             System.out.print("Enter Task Number to Delete : ");
+             int delete = sc.nextInt() - 1;
+             delete_task(delete);
+             break;
+        case 5:
+            break;
+        default:
+            System.out.print("Invalid Choice");
+            
+    }
+    }while(choice != 5 );
+    sc.close();
+    }
+        }
+        
+    
+    
+
